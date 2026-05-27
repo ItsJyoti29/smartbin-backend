@@ -36,7 +36,7 @@ router.post("/update", async (req, res) => {
 
     const { binId, level } = req.body;
 
-    // ❌ अगर data नहीं आया
+    
     if (!binId || level === undefined) {
       return res.status(400).json({ message: "Invalid data from ESP" });
     }
