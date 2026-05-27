@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const app = express(); 
+const app = express();
 
 // middleware
 app.use(cors());
@@ -22,15 +22,18 @@ app.get("/", (req, res) => {
   res.send("API running ✅");
 });
 
+// ✅ PORT FIX
+const PORT = process.env.PORT || 5000;
+
 // database
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected ✅");
 
-    // ✅ IMPORTANT FIX (ESP connect ke liye)
-    app.listen(process.env.PORT, "0.0.0.0", () =>
-      console.log(`Server running on port ${process.env.PORT}`)
+    // ✅ IMPORTANT FIX FOR RENDER
+    app.listen(PORT, "0.0.0.0", () =>
+      console.log(`Server running on port ${PORT}`)
     );
   })
   .catch((err) => console.error("MongoDB Error ❌", err));
